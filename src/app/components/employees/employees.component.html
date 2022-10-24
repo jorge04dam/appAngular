@@ -1,0 +1,75 @@
+<div class="p-3">
+  <!-- <app-form></app-form>   -->
+  <mat-form-field appearance="standard">
+    <mat-label>Buscar empleado</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Ejemplo: Jorge Agustin De Aquino" #input />
+  </mat-form-field>
+
+  <div class="mat-elevation-z8 w-100">
+    <table mat-table [dataSource]="dataSource" matSort>
+      <!-- ID Column -->
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Id</th>
+        <td mat-cell *matCellDef="let row">{{ row.id }}</td>
+      </ng-container>
+
+      <!-- Progress Column -->
+      <ng-container matColumnDef="employeenumber">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>employeenumber</th>
+        <td mat-cell *matCellDef="let row">{{ row.employeenumber }}</td>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="fullname">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>fullname</th>
+        <td mat-cell *matCellDef="let row">{{ row.fullname }}</td>
+      </ng-container>
+
+      <!-- Fruit Column -->
+      <ng-container matColumnDef="dateofbirth">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>dateofbirth</th>
+        <td mat-cell *matCellDef="let row">{{ row.dateofbirth }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="numbercellphone" class="me-5">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>numbercellphone</th>
+        <td mat-cell *matCellDef="let row">{{ row.numbercellphone }}</td>
+      </ng-container>
+      <ng-container matColumnDef="status" id="reload">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>status</th>
+            <td mat-cell *matCellDef="let row"  class="text-success">{{ row.status }}</td>
+      </ng-container>
+      
+      <ng-container matColumnDef="editar">
+      
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Editar</th>
+        <td mat-cell *matCellDef="let row">
+          <button type="button" routerLink="/employees/edit/{{ row.id }}"
+            class="btn btn-outline-primary">Editar</button>
+          {{ row.editar }}
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="eliminar">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          <button [routerLink]="['/employees/new']" class="btn btn-primary">Agregar</button>
+        </th>
+        <td mat-cell *matCellDef="let row">
+          <button type="button" (click)="disable(row.id)" class="btn btn-outline-danger">Cambiar estatus</button>
+          {{ row.eliminar }}
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+      <!-- Row shown when there is no matching data. -->
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell" colspan="4">
+          Usuario no encontrado
+        </td>
+      </tr>
+    </table>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
+  </div>
+</div>

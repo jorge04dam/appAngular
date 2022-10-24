@@ -1,0 +1,33 @@
+<form class="mx-auto text-center shadow w-75 p-4">
+
+    <h3 class="">{{operacion}} empleado</h3>
+    <mat-form-field class="form-control-plaintext w-25 mx-auto"  appearance="fill">
+        <mat-label>Numero de empleado </mat-label>
+        <input type="text" class="form-control-plaintext"  maxlength="6" matInput placeholder="Numero de empleado" [formControl]="employeeNumber" required>
+    </mat-form-field>
+    <mat-form-field class="form-control-plaintext w-25 mx-auto ms-3" appearance="fill">
+        <mat-label>Nombre Completo</mat-label>
+        <input type="text" matInput placeholder="Nombre del empleado" [formControl]="employeeName" required>
+    </mat-form-field>
+    <mat-form-field class="form-control-plaintext w-25 mx-auto ms-3" appearance="fill">
+        <mat-label>Numero de telefono </mat-label>
+        <input type="text" matInput placeholder="Número de telefono" [formControl]="employeeNumberPhone" required>
+    </mat-form-field><br>
+    <mat-form-field class="form-control-plaintext w-25 mx-auto ms-3" appearance="fill">
+        <mat-label>Fecha de nacimiento</mat-label>
+        <input type="date" matInput placeholder="Fecha de nacimiento" [formControl]="employeeDateBirth" required>
+    </mat-form-field>
+    <mat-form-field class="form-control-plaintext w-25 mx-auto ms-3" appearance="fill">
+        <mat-label>Estatus</mat-label>
+        <input type="text" matInput placeholder="Estatus" [formControl]="employeeStatus" required>
+    </mat-form-field>
+    
+    <!-- Select activo o inactivo -->
+    
+    
+    <div class="mb-5">
+        <!-- <p>Go to a different step to see the error state</p> -->
+        <button type="submit"  class="btn btn-primary ms-4 form-control w-25" (click)="edit()" >{{operacion}}</button>
+        <button mat-raised-button routerLink="/employees" class="ms-3 btn btn-danger form-control w-25 ">Volver</button>
+    </div>
+</form>
